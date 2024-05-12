@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Image Upload</title>
+</head>
+<body>
+
+<form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" name="images[]" id="images" multiple accept="image/*">
+    <button type="submit">Upload Images</button>
+</form>
+
+<script>
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var form = event.target;
+        var formData = new FormData();
+
+        var files = document.getElementById('images').files;
+        for (var i = 0; i < files.length; i++) {
+            formData.append('images[]', files[i]);
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:7070/api/v1/attachment/system/upload/all');
+        xhr.setRequestHeader('Secret', 'eyJhbGciOiJIUzI1NiJ9.e30.ZRrHA1JJJW8opsbCGfG_HACGpVUMN_a9IV7pAx');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                console.log('Images uploaded successfully');
+                // Handle success response if needed
+            } else {
+                console.error('Failed to upload images');
+                // Handle error response if needed
+            }
+        };
+        xhr.send(formData);
+    });
+</script>
+
+</body>
+</html>

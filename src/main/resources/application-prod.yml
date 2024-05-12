@@ -1,0 +1,74 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-col629a0si5c73e6kcrg-a.frankfurt-postgres.render.com:5432/plantdisease
+    username: plantdisease_user
+    password: lslJocY4eKFZSCO5Dk3PBVLz7ujrekgi
+
+  liquibase:
+    change-log: classpath:liquibase/master.yaml
+    enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+
+  sql:
+    init:
+      mode: never
+  main:
+    allow-circular-references: true
+
+  servlet:
+    multipart:
+      max-request-size: 20MB
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: doniyorbekjava@gmail.com
+    password: rfavocncodwmkjxy
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+springdoc:
+  paths-to-match: /v1, /api/**
+  packages-to-scan: com.example.plantdiseasedetection.controller
+
+server:
+  error:
+    include-binding-errors: always
+
+attachment:
+  package:
+    url: src\main\resources\download
+  second:
+    package:
+      url: src/main/resources/document
+
+app:
+  files:
+    excel: src/main/resources/document
+  jwt:
+    access-secret-key: 390r8yeifdbkjsdasdfdf309ruwfeiosdjakewpfoi390r8yeifdbkjsdasdfdff309ruwfeiosdjakewpfoi309ruwfeiosdslmfkgrjlmfdfsetbsdfewpirogjeo
+    refresh-secret-key: SupperMupperSecretKeyAknsdgfhgKucahydiUjeee1SupperMupperSecretKeyAkngKucahydiUjeeeeeeeeeeeesdfgmlknori1f309ruwfeiosdjakewpfoif309sfdgaewatewhrtnjskmewpfoi
+    access-token-life-time: 604_800_000
+    refresh-token-life-time: 2_592_000_000
+  max-sms-count: 100
+  max-sms-waiting-time: 120000
+
+logging:
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+  file:
+    name: /root/projects/evr/logs/university-log.log
+  level:
+    org.springframework.web: ERROR
+    org.hibernate: ERROR

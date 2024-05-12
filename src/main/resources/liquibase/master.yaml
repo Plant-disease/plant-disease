@@ -1,0 +1,16 @@
+#https://docs.liquibase.com/change-types/home.html
+databaseChangeLog:
+  - changeSet:
+      id: createUniqueIndexes
+      author: plant-disease-detection
+      validCheckSum: any
+      runAlways: true
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: changelog/indexes.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
+            endDelimiter: \nGO
+
