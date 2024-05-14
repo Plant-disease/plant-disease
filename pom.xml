@@ -19,13 +19,13 @@
     </properties>
     <dependencies>
 
-        <dependency>
+        <!--<dependency>
             <groupId>com.opencv-480.jar</groupId>
             <artifactId>opencv-server</artifactId>
             <version>1.0.0</version>
             <scope>system</scope>
             <systemPath>${pom.basedir}/src/libs/opencv-480.jar</systemPath>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

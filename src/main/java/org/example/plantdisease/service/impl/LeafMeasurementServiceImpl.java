@@ -8,9 +8,9 @@ import org.example.plantdisease.entity.LeafMeasurement;
 import org.example.plantdisease.payload.VeinFeatures;
 import org.example.plantdisease.service.ImageProcessing;
 import org.example.plantdisease.service.LeafMeasurementService;
-import org.opencv.core.*;
+/*import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
+import org.opencv.imgproc.Imgproc;*/
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,7 @@ public class LeafMeasurementServiceImpl implements LeafMeasurementService {
     private final ImageProcessing imageProcessing;
 
     static {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        //System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
     @Override
@@ -104,8 +104,9 @@ public class LeafMeasurementServiceImpl implements LeafMeasurementService {
     public double getLeafArea(String attachmentURL) {
 
         try {
+            //abror12
 
-            String path = imageProcessing.getWhiteImage(attachmentURL);
+            /*String path = imageProcessing.getWhiteImage(attachmentURL);
             // Load the image
             Mat image = Imgcodecs.imread(path);
 
@@ -136,7 +137,8 @@ public class LeafMeasurementServiceImpl implements LeafMeasurementService {
             // Calculate the area of the detected contour (leaf area)
             double leafArea = Imgproc.contourArea(contours.get(maxAreaContourIndex));
 
-            return leafArea;
+            return leafArea;*/
+            return 0;
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -204,7 +206,9 @@ public class LeafMeasurementServiceImpl implements LeafMeasurementService {
             String imagePath = packageUrl + "\\image_of_leaf_perimeter.jpg";
             saveImage(processedImage, imagePath);
 
-            Mat image = Imgcodecs.imread(imagePath);
+            // Abror12
+
+            /*Mat image = Imgcodecs.imread(imagePath);
 
             // Convert the image to grayscale
             Mat grayImage = new Mat();
@@ -231,7 +235,8 @@ public class LeafMeasurementServiceImpl implements LeafMeasurementService {
             }
             // Calculate the perimeter of the detected contour
 
-            return Imgproc.arcLength(new MatOfPoint2f(contours.get(maxAreaContourIndex).toArray()), true);
+            return Imgproc.arcLength(new MatOfPoint2f(contours.get(maxAreaContourIndex).toArray()), true);*/
+            return 0;
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -379,9 +384,10 @@ public class LeafMeasurementServiceImpl implements LeafMeasurementService {
         try {
 
             // OpenCV kutubxonasini yuklash
-//            System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
-            // Rasmi yuklash
+            //System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+
+            /*// Rasmi yuklash
             Mat inputImage = Imgcodecs.imread(attachmentURL);
 
             // Convert image to grayscale
@@ -412,10 +418,10 @@ public class LeafMeasurementServiceImpl implements LeafMeasurementService {
 
                 // Estimate vein width (considering the width of the bounding rectangle)
                 double veinWidth = boundingRect.width;
-                totalVeinWidth += veinWidth;
-            }
+                totalVeinWidth += veinWidth;*/
+            //}
 
-            // Calculate average vein length and width
+            /*// Calculate average vein length and width
             double avgVeinLength = totalVeinLength / totalVeinCount;
             double avgVeinWidth = totalVeinWidth / totalVeinCount;
 
@@ -424,7 +430,8 @@ public class LeafMeasurementServiceImpl implements LeafMeasurementService {
             veinFeatures.setAverageVeinLength(avgVeinLength);
             veinFeatures.setAverageVeinWidth(avgVeinWidth);
 
-            return veinFeatures;
+            return veinFeatures;*/
+            return null;
         } catch (Exception e) {
             e.printStackTrace();
             return new VeinFeatures(0, 0, 0);
